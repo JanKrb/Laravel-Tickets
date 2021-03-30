@@ -72,8 +72,12 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                 <a class="dropdown-item">Open</a>
-                                <a class="dropdown-item">Edit</a>
-                                <a class="dropdown-item">Delete</a>
+                                <a class="dropdown-item edit"
+                                   data-id="{{ $group->id }}"
+                                   data-name="{{ $group->group_name }}"
+                                   data-color="{{ $group->group_color }}"
+                                   data-default="{{ $group->default_group }}">Edit</a>
+                                <a class="dropdown-item delete" data-id="{{ $group->id }}">Delete</a>
                             </div>
                         </div>
                     </td>
@@ -84,6 +88,8 @@
     </div>
 
     @include('permissions.modal.createGroup')
+    @include('permissions.modal.editGroup')
+    @include('permissions.modal.deleteGroup')
 @endsection
 
 @push('js')

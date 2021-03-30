@@ -28,9 +28,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Routes for Permission System
     Route::get('/groups', 'PermissionController@listGroups')->name('groups'); // List all groups
-    Route::put('/groups', 'PermissionController@createGroup'); // Create new group
-    Route::post('/groups', 'PermissionController@updateGroup'); // Update existing group
-    Route::delete('/groups', 'PermissionController@deleteGroup'); // Delete existing group
+    Route::put('/groups', 'PermissionController@createGroup')->name('createGroup');; // Create new group
+    Route::post('/groups', 'PermissionController@updateGroup')->name('updateGroup');; // Update existing group
+    Route::delete('/groups', 'PermissionController@deleteGroup')->name('deleteGroup');; // Delete existing group
 });
 
 

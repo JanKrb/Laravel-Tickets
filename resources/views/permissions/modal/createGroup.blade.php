@@ -2,7 +2,7 @@
 <div class="modal fade" id="create-group-modal" tabindex="-1" role="dialog" aria-labelledby="create-group-label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <form id="create-group--form" class="form-horizontal" method="post" autocomplete="off">
+            <form id="create-group--form" class="form-horizontal" method="post" action="{{ route('createGroup') }}" autocomplete="off">
                 @method('put')
                 @csrf
 
