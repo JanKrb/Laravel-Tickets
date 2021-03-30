@@ -60,10 +60,8 @@
 
                 <div class="card-body">
 
-                    <form method="POST" action="{{ route('profile.update') }}" autocomplete="off">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                        <input type="hidden" name="_method" value="PUT">
+                    <form method="POST" action="{{ route('profile.update') }}" autocomplete="off" enctype="multipart/form-data">
+                        @csrf
 
                         <h6 class="heading-small text-muted mb-4">User information</h6>
 
@@ -95,8 +93,8 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="picture">Profile Picture</label>
-                                        <input type="url" id="picture" class="form-control" name="picture" placeholder="https://imgur.com/.png" value="{{ old('picture', Auth::user()->picture) }}">
+                                        <label class="form-control-label" for="image">Choose Image</label>
+                                        <input class="form-control" id="image" type="file" name="image">
                                     </div>
                                 </div>
                             </div>
