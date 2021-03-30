@@ -71,7 +71,7 @@
                                 <i class="fas fa-ellipsis-v"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                <a class="dropdown-item">Open</a>
+                                <a class="dropdown-item" href="{{ route('permissions', ['groupid' => $group->id]) }}">Open</a>
                                 <a class="dropdown-item edit"
                                    data-id="{{ $group->id }}"
                                    data-name="{{ $group->group_name }}"
