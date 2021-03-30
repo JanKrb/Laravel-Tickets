@@ -49,6 +49,7 @@ Laravel - [Framework](https://laravel.com/)
 LaravelEasyNav - [DevMarketer](https://github.com/DevMarketer/LaravelEasyNav)
 SB Admin 2 - [StartBootstrap](https://github.com/startbootstrap/startbootstrap-sb-admin-2)
 SB Admin 2 Laravel - [AlecKrh](https://github.com/aleckrh/laravel-sb-admin-2)
+
 ## License
 
 MIT
