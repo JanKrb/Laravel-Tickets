@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
@@ -28,7 +30,7 @@ class ProfileController extends Controller
             'current_password' => 'nullable|required_with:new_password',
             'new_password' => 'nullable|min:8|required_with:current_password',
             'password_confirmation' => 'nullable|min:8|required_with:new_password|same:new_password',
-            'picture' => 'nullable|url|max:255'
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2560'
         ]);
 
 
@@ -36,7 +38,12 @@ class ProfileController extends Controller
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
-        $user->picture = $request->input('picture');
+
+        $extension = $request->image->extension();
+        $name = Str::random(40);
+        $request->image->storeAs('/public', $name . "." . $extension);
+        $url = Storage::url($name . "." . $extension);
+        $user->picture = $url;
 
         if (!is_null($request->input('current_password'))) {
             if (Hash::check($request->input('current_password'), $user->password)) {
