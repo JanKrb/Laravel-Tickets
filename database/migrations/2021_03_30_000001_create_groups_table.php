@@ -17,7 +17,8 @@ class CreateGroupsTable extends Migration
             $table->id();
             $table->string('group_name');
             $table->string('group_color');
-            $table->boolean('default_group')->unique();
+            $table->boolean('default_group');
+            $table->integer('creator_id');
             $table->timestamps();
         });
     }

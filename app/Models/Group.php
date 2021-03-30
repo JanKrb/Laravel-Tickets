@@ -12,6 +12,6 @@ class Group extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'color', 'creator_id'
+        'group_name', 'group_color', 'default_group', 'creator_id'
     ];
 }

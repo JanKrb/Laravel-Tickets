@@ -10,6 +10,7 @@ $factory->define(Group::class, function (Faker $faker) {
     return [
         'group_name' => 'New Group',
         'group_color' => $faker->unique()->hexColor,
-        'default_group' => false
+        'default_group' => false,
+        'creator_id' => 0
     ];
 });

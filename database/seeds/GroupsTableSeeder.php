@@ -16,6 +16,7 @@ class GroupsTableSeeder extends Seeder {
             'group_name' => 'Administrator',
             'group_color' => '#ff0000',
             'default_group' => false,
+            'creator_id' => 0,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
