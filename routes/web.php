@@ -21,5 +21,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/profile', 'ProfileController@index')->name('profile');
-Route::post('/profile', 'ProfileController@update')->name('profile.update');
+Route::group(['middleware' => 'auth'], function () {
+    // Routes for Profile's
+    Route::get('/profile', 'ProfileController@index')->name('profile'); // Show profile
+    Route::post('/profile', 'ProfileController@update')->name('profile.update'); // Update profile
+
+    // Routes for Permission System
+    Route::get('/groups', 'PermissionController@listGroups')->name('groups'); // List all groups
+    Route::put('/groups', 'PermissionController@createGroup'); // Create new group
+    Route::post('/groups', 'PermissionController@updateGroup'); // Update existing group
+    Route::delete('/groups', 'PermissionController@deleteGroup'); // Delete existing group
+});
+
+
+
