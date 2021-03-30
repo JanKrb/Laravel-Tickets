@@ -14,12 +14,24 @@ This ticket system is based on laravel framework with SB Admin 2 Bootstrap templ
 
 Laravel-Tickets requires PHP 7.2+, composer and npm.
 
+Install dependencies
 ```sh
 git clone https://github.com/JanKrb/Laravel-Tickets
 cd Laravel-Tickets
 npm install
 composer install
 ```
+
+Setup project
+
+- Copy .env.example to file .env
+- Fill out fields in .env
+    - If you don't know what to fill with, leave it out
+    - The Debug variable should be false in production use
+    - The Key variable will be generated later
+- Run command ``php artisan key:generate`` for key generating
+- Run command ``php artisan storage:link`` for accessing the image
+- Run command ``php artisan migrate --seed`` for generating the database
 
 Generate files for production usage:
 ```sh
