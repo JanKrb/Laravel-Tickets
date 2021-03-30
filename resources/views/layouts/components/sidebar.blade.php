@@ -16,7 +16,8 @@
     <li class="nav-item {{ Nav::isRoute('home') }}">
         <a class="nav-link" href="{{ route('home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>{{ __('Dashboard') }}</span></a>
+            <span>{{ __('Dashboard') }}</span>
+        </a>
     </li>
 
     <!-- Divider -->
@@ -32,6 +33,22 @@
         <a class="nav-link" href="{{ route('profile') }}">
             <i class="fas fa-fw fa-user"></i>
             <span>{{ __('Profile') }}</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        {{ __('Administration') }}
+    </div>
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item {{ Nav::isRoute('groups') }}">
+        <a class="nav-link" href="{{ route('groups') }}">
+            <i class="fas fa-fw fa-users-cog"></i>
+            <span>{{ __('Groups') }}</span>
         </a>
     </li>
 
