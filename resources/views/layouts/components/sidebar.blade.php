@@ -20,6 +20,14 @@
         </a>
     </li>
 
+    <!-- Nav Item - Create Ticket -->
+    <li class="nav-item {{ Nav::isRoute('createTicket') }}">
+        <a class="nav-link" href="{{ route('createTicket') }}">
+            <i class="fas fa-fw fa-plus"></i>
+            <span>{{ __('New Ticket') }}</span>
+        </a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -57,6 +65,27 @@
         <a class="nav-link" href="{{ route('listAccounts') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>{{ __('List Accounts') }}</span>
+        </a>
+    </li>
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        {{ __('Tickets') }}
+    </div>
+
+    <!-- Nav Item - Ticket List -->
+    <li class="nav-item {{ Nav::isRoute('listTicket') }}">
+        <a class="nav-link" href="{{ route('listTicket') }}">
+            <i class="fas fa-fw fa-list"></i>
+            <span>{{ __('Ticket List') }}</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Ticket Settings -->
+    <li class="nav-item {{ Nav::isRoute('adminTicket') }}">
+        <a class="nav-link" href="{{ route('adminTicket') }}">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>{{ __('Ticket Settings') }}</span>
         </a>
     </li>
 
