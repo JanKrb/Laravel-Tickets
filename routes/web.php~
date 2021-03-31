@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/accounts', 'AccountController@listAccounts')->name('listAccounts'); // List all accounts
     Route::get('/account/{accountid}', 'AccountController@showAccount')->name('showAccount'); // Detailed view of account
     Route::post('/account/{accountid}', 'AccountController@updateAccount')->name('updateAccount'); // Update infos of account
-    Route::put('/account/{accountid}', 'AccountController@changePasswordAccount')->name('changePasswordAccount'); // Update infos of account
+    Route::put()
     Route::delete('/account/{accountid}', 'AccountController@deleteAccount')->name('deleteAccount'); // Delete account
 });
 

@@ -36,12 +36,11 @@
                     @endif
                 </div>
                 <div class="card-body">
-
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="text-center">
                                 <h5 class="font-weight-bold">{{  Auth::user()->fullName }}</h5>
-                                <p>Administrator</p>
+                                <p>{{ Auth::user()->getGroup()->group_name }} }}</p>
                             </div>
                         </div>
                     </div>

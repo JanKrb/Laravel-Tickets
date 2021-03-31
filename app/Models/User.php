@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'email', 'password', 'picture',
+        'name', 'last_name', 'email', 'password', 'picture', 'group', 'last_login'
     ];
 
     /**
@@ -60,5 +61,36 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    /**
+     * Get group of user
+     * @return Group|null Group of user
+     */
+    public function getGroup(): Group {
+        return Group::where('id', Auth::user()->group)->first();
+    }
+
+    /**
+     * Get permissions of user
+     * @return array Array of permissions
+     */
+    public function getPermissions(): array {
+        return GroupPermission::where('group_id', Auth::user()->group)->get();
+    }
+
+    /**
+     * Is user permitted
+     * @param $permission_name string Permission Name
+     * @return bool
+     */
+    public function hasPermission(string $permission_name): bool {
+        foreach ($this->getPermissions() as $permission) {
+            if ($permission === $permission_name || $permission === '*') {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
