@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->integer('group');
             $table->rememberToken();
             $table->timestamps();
+            $table->dateTime('last_login')->nullable();
         });
     }
 

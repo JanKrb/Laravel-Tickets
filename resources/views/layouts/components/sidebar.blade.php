@@ -52,6 +52,14 @@
         </a>
     </li>
 
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item {{ Nav::isRoute('listAccounts') }}">
+        <a class="nav-link" href="{{ route('listAccounts') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>{{ __('List Accounts') }}</span>
+        </a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

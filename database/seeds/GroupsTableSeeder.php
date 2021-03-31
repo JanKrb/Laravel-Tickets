@@ -15,7 +15,7 @@ class GroupsTableSeeder extends Seeder {
         DB::table('groups')->insert([
             'group_name' => 'Administrator',
             'group_color' => '#ff0000',
-            'default_group' => false,
+            'default_group' => true,
             'creator_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
