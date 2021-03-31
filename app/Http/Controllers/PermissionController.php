@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Auth;
 class PermissionController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Open view to list all existing groups
      * @return View View to display
      */
