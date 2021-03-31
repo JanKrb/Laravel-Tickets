@@ -108,15 +108,25 @@
                                     <div class="col">
                                         <div class="form-group mb-3">
                                             <label class="form-label text-bold" for="first_name">First Name</label>
-
                                             <input class="form-control" type="text" id="first_name" placeholder="John" value="{{ $user->name }}" name="first_name">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group mb-3">
                                             <label class="form-label text-bold" for="last_name">Last Name</label>
-
                                             <input class="form-control" type="text" id="last_name" placeholder="Doe" value="{{ $user->last_name }}" name="last_name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label text-bold" for="group">Group</label>
+                                            <select name="group" id="group" class="form-control custom-select">
+                                                @foreach($groups as $group)
+                                                <option value="{{ $group->id }}">{{ $group->group_name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

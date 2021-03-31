@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -44,6 +45,7 @@ class AccountController extends Controller
     public function showAccount($accountId) {
         $data = array(
             "user" => User::where('id', $accountId)->first(),
+            "groups" => Group::all()
         );
 
         return view('accounts.detailedView', $data);
@@ -60,19 +62,28 @@ class AccountController extends Controller
         $request->validate([
             'email' => 'required|email',
             "first_name" => 'required',
-            "last_name" => 'required'
+            "last_name" => 'required',
+            'group' => 'required'
         ]);
 
         $account = User::where('id', $accountId)->first();
         $account->email = $request->input('email');
         $account->name = $request->input('first_name');
         $account->last_name = $request->input('last_name');
+        $account->group = $request->input('group');
         $account->save();
 
         return redirect()->route('showAccount', ['accountid' => $accountId])->withSuccess('Account has been updated');
     }
 
-    public function changePasswordAccount(Request $request, int $accountId) {
+    /**
+     * Change account's password
+     * @param Request $request
+     * @param int $accountId
+     * @return RedirectResponse
+     */
+    public function changePasswordAccount(Request $request, int $accountId): RedirectResponse
+    {
         $request->validate([
             'password' => 'required|string|min:8'
         ]);
@@ -84,7 +95,14 @@ class AccountController extends Controller
         return redirect()->route('showAccount', ['accountid' => $accountId])->withSuccess('Password has been changed.');
     }
 
-    public function deleteAccount(Request $request, int $accountId) {
+    /**
+     * Delete account
+     * @param Request $request
+     * @param int $accountId
+     * @return RedirectResponse
+     */
+    public function deleteAccount(Request $request, int $accountId): RedirectResponse
+    {
         $account = User::where('id', $accountId)->delete();
         return redirect()->route('listAccounts')->withSuccess('Account has been deleted.');
     }
