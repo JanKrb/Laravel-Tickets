@@ -16,7 +16,7 @@ class GroupsTableSeeder extends Seeder {
             'group_name' => 'Administrator',
             'group_color' => '#ff0000',
             'default_group' => false,
-            'creator_id' => 0,
+            'creator_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -24,7 +24,7 @@ class GroupsTableSeeder extends Seeder {
         DB::table('group_permissions')->insert([
             'group_id' => 1,
             'permission_name' => '*',
-            'creator_id' => 0,
+            'creator_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

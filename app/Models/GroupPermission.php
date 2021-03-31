@@ -14,4 +14,12 @@ class GroupPermission extends Model
     protected $fillable = [
         'group_id', 'permission_name', 'creator_id'
     ];
+
+    /**
+     * @return User|null
+     */
+    public function getCreatorUser(): ?User
+    {
+       return User::where('id', $this->creator_id)->first();
+    }
 }

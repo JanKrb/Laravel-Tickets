@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\GroupPermission;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -47,7 +48,7 @@ class PermissionController extends Controller
         ]);
 
         $type = 'success';
-        $message = '';
+        $message = 'The group has been created.';
 
         if (!$group) {
             $type = 'error';
@@ -60,9 +61,10 @@ class PermissionController extends Controller
     /**
      * Update an existing group by request
      * @param Request $request
-     * @return View
+     * @return RedirectResponse|View
      */
-    public function updateGroup(Request $request): View {
+    public function updateGroup(Request $request)
+    {
         $request->validate([
             'id' => 'required|integer',
             'name' => 'required',
@@ -82,7 +84,7 @@ class PermissionController extends Controller
         ]);
 
         $type = 'success';
-        $message = '';
+        $message = 'The group has been edited.';
 
         if (!$group) {
             $type = 'error';
@@ -105,7 +107,7 @@ class PermissionController extends Controller
         $group = Group::where('id', $request->input('id'))->delete();
 
         $type = 'success';
-        $message = '';
+        $message = 'The group has been deleted.';
 
         if (!$group) {
             $type = 'error';
@@ -120,8 +122,82 @@ class PermissionController extends Controller
      * @param $groupId int Primary Key / ID of the group to fetch the permissions from
      * @return View View to display
      */
-    public function listPermissionsOfGroup(int $groupId): View
+    public function listPermissions(int $groupId): View
     {
-        return view();
+        $data = array(
+            "group" => Group::where('id', $groupId)->first(),
+            "permissions" => GroupPermission::where('group_id', $groupId)->get()
+        );
+
+        return view('permissions.listPermissions', $data);
+    }
+
+    /**
+     * Grant permission to group
+     * @param Request $request
+     * @param int $groupId Target group id
+     * @return View View to display
+     */
+    public function grantPermission(Request $request, int $groupId): View {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $permissions = GroupPermission::create([
+            'permission_name' => $request->input('name'),
+            'creator_id' => Auth::user()->id,
+            'group_id' => $groupId
+        ]);
+
+        $type = 'success';
+        $message = 'Permission has been granted.';
+
+        if (!$permissions) {
+            $type = 'error';
+            $message = 'An error occured while granting your permission.';
+        }
+
+        return $this->listPermissions($groupId)->with($type, $message);
+    }
+
+    public function updatePermission(Request $request, int $groupId): View {
+        $request->validate([
+            'id' => 'required|integer',
+            'name' => 'required',
+        ]);
+
+        $permission = GroupPermission::where('id', $request->input('id'))->first();
+        $permission->update([
+            'permission_name' => $request->input('name'),
+            'creator_id' => Auth::user()->id,
+            'updated_at' => now()
+        ]);
+
+        $type = 'success';
+        $message = 'The permission has been edited.';
+
+        if (!$permission) {
+            $type = 'error';
+            $message = 'An error occured while updating your permission.';
+        }
+
+        return $this->listPermissions($groupId)->with($type, $message);
+    }
+
+    /**
+     * Revoke permission by id
+     * @param Request $request
+     * @param int $groupId Target group id
+     * @return View View to display
+     */
+    public function revokePermission(Request $request, int $groupId): View
+    {
+        $request->validate([
+            'id' => 'required|integer',
+        ]);
+
+        GroupPermission::where(['id' => $request->input('id')])->delete();
+
+        return $this->listPermissions($groupId)->with('success', 'The permission has been revoked.');
     }
 }
