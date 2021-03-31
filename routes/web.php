@@ -43,5 +43,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/account/{accountid}', 'AccountController@updateAccount')->name('updateAccount'); // Update infos of account
     Route::put('/account/{accountid}', 'AccountController@changePasswordAccount')->name('changePasswordAccount'); // Update infos of account
     Route::delete('/account/{accountid}', 'AccountController@deleteAccount')->name('deleteAccount'); // Delete account
+
+    // Routes for Ticket System
+    Route::get('/create-ticket', 'TicketController@createTicket')->name('createTicket'); // Show create ticket view
+    Route::get('/tickets', 'TicketController@listTicket')->name('listTicket'); // List all tickets
+    Route::get('/ticket-settings', 'TicketController@adminTicket')->name('adminTicket'); // Show ticket settings
+    Route::get('/ticket/{ticketid}', 'TicketController@viewTicket')->name('showTicket'); // Show ticket
 });
 
