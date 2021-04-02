@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTicketStatuesTable extends Migration
+class CreateTicketStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTicketStatuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ticket_statues', function (Blueprint $table) {
+        Schema::create('ticket_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('color');
@@ -29,6 +29,6 @@ class CreateTicketStatuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ticket_statues');
+        Schema::dropIfExists('ticket_statuses');
     }
 }
