@@ -41,11 +41,14 @@
                 <td>{{ date('m/d/Y', strtotime($department->created_at)) }}</td>
                 <td>{{ date('m/d/Y', strtotime($department->updated_at)) }}</td>
                 <td>
-                    <button class="btn btn-link"><i class="fas fa-pen"></i></button>
-                    <button class="btn btn-link"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-link editDepartment" data-id="{{ $department->id }}" data-name="{{ $department->name }}" data-description="{{ $department->description }}"><i class="fas fa-pen"></i></button>
+                    <button class="btn btn-link deleteDepartment" data-id="{{ $department->id }}"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
 </div>
+
+@include('tickets.admin-ticket.modals.deleteDepartmentModal')
+@include('tickets.admin-ticket.modals.editDepartmentModal')

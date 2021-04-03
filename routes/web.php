@@ -52,9 +52,21 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Routes for Ticket Admin
     Route::post('/ticket-settings/generic', 'Ticket\TicketAdminController@updateGenericSetting')->name('updateGenericSetting'); // Post Route for Ticket Admin / Generic Settings form
+
     Route::post('/ticket-settings/status', 'Ticket\TicketAdminController@addNewStatus')->name('addNewStatus'); // Post Route for Ticket Admin / Tags form
+    Route::post('/ticket-settings/status/edit', 'Ticket\TicketAdminController@editNewStatus')->name('editNewStatus'); // Post Route for Ticket Admin / Tags form
+    Route::post('/ticket-settings/status/delete', 'Ticket\TicketAdminController@deleteNewStatus')->name('deleteNewStatus'); // Post Route for Ticket Admin / Tags form
+
     Route::post('/ticket-settings/tag', 'Ticket\TicketAdminController@addNewTag')->name('addNewTag'); // Post Route for Ticket Admin / Tags form
+    Route::post('/ticket-settings/tag/edit', 'Ticket\TicketAdminController@editNewTag')->name('editNewTag'); // Post Route for Ticket Admin / Tags form
+    Route::post('/ticket-settings/tag/delete', 'Ticket\TicketAdminController@deleteNewTag')->name('deleteNewTag'); // Post Route for Ticket Admin / Tags form
+
     Route::post('/ticket-settings/department', 'Ticket\TicketAdminController@addNewDepartment')->name('addNewDepartment'); // Post Route for Ticket Admin / Department form
+    Route::post('/ticket-settings/department/edit', 'Ticket\TicketAdminController@editNewDepartment')->name('editNewDepartment'); // Post Route for Ticket Admin / Department form
+    Route::post('/ticket-settings/department/delete', 'Ticket\TicketAdminController@deleteNewDepartment')->name('deleteNewDepartment'); // Post Route for Ticket Admin / Department form
+
     Route::post('/ticket-settings/preset', 'Ticket\TicketAdminController@addNewPreset')->name('addNewPreset'); // Post Route for Ticket Admin / Preset form
+    Route::post('/ticket-settings/preset/edit', 'Ticket\TicketAdminController@editNewPreset')->name('editNewPreset'); // Post Route for Ticket Admin / Preset form
+    Route::post('/ticket-settings/preset/delete', 'Ticket\TicketAdminController@deleteNewPreset')->name('deleteNewPreset'); // Post Route for Ticket Admin / Preset form
 });
 

@@ -41,11 +41,14 @@
                 <td>{{ date('m/d/Y', strtotime($status->created_at)) }}</td>
                 <td>{{ date('m/d/Y', strtotime($status->updated_at)) }}</td>
                 <td>
-                    <button class="btn btn-link"><i class="fas fa-pen"></i></button>
-                    <button class="btn btn-link"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-link editStatus" data-id="{{ $status->id }}" data-title="{{ $status->title }}" data-color="{{ $status->color }}"><i class="fas fa-pen"></i></button>
+                    <button class="btn btn-link deleteStatus" data-id="{{ $status->id }}"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 </div>
+
+@include('tickets.admin-ticket.modals.deleteStatusModal')
+@include('tickets.admin-ticket.modals.editStatusModal')

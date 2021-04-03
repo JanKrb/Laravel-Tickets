@@ -22,8 +22,8 @@
                 <td>{{ date('m/d/Y', strtotime($tag->created_at)) }}</td>
                 <td>{{ date('m/d/Y', strtotime($tag->updated_at)) }}</td>
                 <td>
-                    <button class="btn btn-link"><i class="fas fa-pen"></i></button>
-                    <button class="btn btn-link"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-link editTag" data-id="{{ $tag->id }}" data-title="{{ $tag->title }}" data-color="{{ $tag->color }}"><i class="fas fa-pen"></i></button>
+                    <button class="btn btn-link deleteTag" data-id="{{ $tag->id }}"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>
         @endforeach
@@ -49,3 +49,6 @@
         </tbody>
     </table>
 </div>
+
+@include('tickets.admin-ticket.modals.deleteTagModal')
+@include('tickets.admin-ticket.modals.editTagModal')

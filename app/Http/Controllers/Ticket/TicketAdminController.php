@@ -126,4 +126,118 @@ class TicketAdminController extends Controller
 
         return redirect()->route('adminTicket')->with($type, $message);
     }
+
+    public function editNewStatus(Request $request) {
+        $request->validate([
+            'id' => 'required',
+            'title' => 'required',
+            'color' => 'required',
+        ]);
+
+        $status = TicketStatus::where('id', $request->input('id'))->first();
+        if (!$status) {
+            return redirect()->route('adminTicket')->with('error', 'You tried to edit an invalid status');
+        }
+
+        $status->title = $request->input('title');
+        $status->color = $request->input('color');
+        $status->save();
+
+        return redirect()->route('adminTicket')->withSuccess('You successfully updated the status.');
+    }
+
+    public function deleteNewStatus(Request $request) {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        TicketStatus::where('id', $request->input('id'))->delete();
+
+        return redirect()->route('adminTicket')->withSuccess('You successfully deleted the status.');
+    }
+
+    public function editNewTag(Request $request) {
+        $request->validate([
+            'id' => 'required',
+            'title' => 'required',
+            'color' => 'required',
+        ]);
+
+        $tag = TicketTag::where('id', $request->input('id'))->first();
+        if (!$tag) {
+            return redirect()->route('adminTicket')->with('error', 'You tried to edit an invalid tag');
+        }
+
+        $tag->title = $request->input('title');
+        $tag->color = $request->input('color');
+        $tag->save();
+
+        return redirect()->route('adminTicket')->withSuccess('You successfully updated the tag.');
+    }
+
+    public function deleteNewTag(Request $request) {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        TicketTag::where('id', $request->input('id'))->delete();
+
+        return redirect()->route('adminTicket')->withSuccess('You successfully deleted the tag.');
+    }
+
+    public function editNewDepartment(Request $request) {
+        $request->validate([
+            'id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $department = TicketDepartment::where('id', $request->input('id'))->first();
+        if (!$department) {
+            return redirect()->route('adminTicket')->with('error', 'You tried to edit an invalid department');
+        }
+
+        $department->name = $request->input('name');
+        $department->description = $request->input('description');
+        $department->save();
+
+        return redirect()->route('adminTicket')->withSuccess('You successfully updated the department.');
+    }
+
+    public function deleteNewDepartment(Request $request) {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        TicketDepartment::where('id', $request->input('id'))->delete();
+
+        return redirect()->route('adminTicket')->withSuccess('You successfully deleted the department.');
+    }
+
+    public function editNewPreset(Request $request) {
+        $request->validate([
+            'id' => 'required',
+            'text' => 'required'
+        ]);
+
+        $preset = TicketPreset::where('id', $request->input('id'))->first();
+        if (!$preset) {
+            return redirect()->route('adminTicket')->with('error', 'You tried to edit an invalid preset');
+        }
+
+        $preset->text = $request->input('text');
+        $preset->save();
+
+        return redirect()->route('adminTicket')->withSuccess('You successfully updated the preset.');
+    }
+
+    public function deleteNewPreset(Request $request) {
+        $request->validate([
+           'id' => 'required'
+        ]);
+
+        TicketPreset::where('id', $request->input('id'))->delete();
+
+        return redirect()->route('adminTicket')->withSuccess('You successfully deleted the preset.');
+    }
 }
