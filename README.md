@@ -1,4 +1,4 @@
-# Laravel Ticket System
+# Laravel Ticket System (WIP)
 This ticket system is based on laravel framework with SB Admin 2 Bootstrap template.
 
 ## Features
